@@ -1,7 +1,8 @@
 import { useContext } from "react";
+import { IoSearchOutline } from "react-icons/io5";
 import { Helper } from "../store/context";
 function Navbar(){
-    const {nav,setnav}=useContext(Helper);
+    const {nav,setnav,data,News}=useContext(Helper);
     return <div className=" uppercase text-2xl shadow-2xl">
         <h1 className="text-green-600 text-3xl cursor-pointer">NEWS-APP</h1>
         
@@ -14,8 +15,11 @@ function Navbar(){
             <li onClick={()=>setnav("newspaper")} className={nav==="newspaper"?"border-b-4 border-b-green-600  ":" "}>our newspaper</li>
             <li onClick={()=>setnav("contact")} className={nav==="contact"?"border-b-4 border-b-green-600  ":" "}>contact</li>
             <div className=" flex justify-end ">
-            <input type="text"placeholder="TOPIC" className="text-gray-600"/>
-            <h1>search icon</h1>
+                <form onSubmit={News}>
+            <input type="text"placeholder="TOPIC" className="text-gray-600" ref={data} required/>
+           <button><IoSearchOutline /></button>
+            </form>
+             
         </div>
              
         </ul>
