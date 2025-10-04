@@ -9,6 +9,7 @@ function News(){
         <h1 >TOP BREAKING NEWS </h1>
         <p className="text-2xl">THESE ARE THE TOP POPULAR BREAKING NEWS </p>
         {loading&&<Load/>}
+        <h1 className="uppercase text-red-800">{errs}</h1>
 
         <div className="grid gap-18 align-middle md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
             {news.map((item,index)=>(

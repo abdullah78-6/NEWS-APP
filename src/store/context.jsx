@@ -9,20 +9,26 @@ export function Gives({children}){
     let [errs,seterr]=useState();
     let [loading,setloading]=useState();
     let [news,setnews]=useState([]);
-    let data=useRef();
+   
+   let[data,setdata]=useState("");
     let apikey="pub_662e120e940d4e0b99473a3ce97785cb";
    let [call ,setcall]=useState(false);
     useEffect(()=>{
       console.log("hellow news api ");
+
+
     News();
 },[]);
 
 
+
  async function News(e){
          setloading(true);
-         let searchprompt=data.current.value;
+         let searchprompt=data;
          let apiurl=searchprompt?`https://newsdata.io/api/1/news?apikey=${apikey}&q=${encodeURIComponent(searchprompt)}&language=en`:`https://newsdata.io/api/1/latest?apikey=${apikey}&language=en`;
          console.log(searchprompt);
+         
+         
          if(e){
          e.preventDefault();
          }
@@ -38,7 +44,9 @@ export function Gives({children}){
             });
             const result=await res.json();
             
-            setnews(result.results);
+            
+            setnews(Array.isArray(result.results)?result.results:[]);
+
             
 
 
@@ -55,7 +63,7 @@ export function Gives({children}){
 
 
      }
-   return ( <Helper.Provider value={{nav,setnav,news,loading,link,errs,data,News}} >
+   return ( <Helper.Provider value={{nav,setnav,news,loading,link,errs,setdata,News}} >
         {children}
 </Helper.Provider>
    )
