@@ -9,6 +9,17 @@ export function Gives({children}){
     let [errs,seterr]=useState();
     let [loading,setloading]=useState();
     let [news,setnews]=useState([]);
+    let [color,setcolor]=useState(false);
+    function lighttheme(){
+      setcolor(false);
+      
+
+    }
+    function darktheme(){
+      setcolor(true);
+      
+
+    }
    
    let[data,setdata]=useState("");
     let apikey="pub_662e120e940d4e0b99473a3ce97785cb";
@@ -55,15 +66,17 @@ export function Gives({children}){
          catch(err){
             console.log("err is ",err);
             seterr("CHECK YOUR NETWORK CONNECTION ");
+            
          }
          finally{
             setloading(false);
+            
 
          }
 
 
      }
-   return ( <Helper.Provider value={{nav,setnav,news,loading,link,errs,setdata,News}} >
+   return ( <Helper.Provider value={{nav,setnav,news,loading,link,errs,setdata,News,lighttheme,darktheme,color,setcolor}} >
         {children}
 </Helper.Provider>
    )
